@@ -12,7 +12,7 @@ sources:
           - name: model
             description: Модель самолета
           - name: range
-            description: - 
+            description: "" 
       - name: airports
         description: Аэропорты
         columns:
