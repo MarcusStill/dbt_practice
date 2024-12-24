@@ -1,0 +1,37 @@
+sources:
+  - name: demo_src
+    description: Данные из БД авиаперелетов
+    database: dwh_flight
+    schema: demo_src
+    tables:
+      - name: aircrafts
+        description: Модели самолетов
+        columns:
+          - name: aircraft_code
+            description: Код модели самолета
+          - name: model
+            description: Модель самолета
+          - name: range
+            description: - 
+      - name: airports
+        description: Аэропорты
+        columns:
+          - name: airport_code
+            description: Код аэропорта
+          - name: airport_name
+            description: Название аэропорта
+          - name: city
+            description: Название города
+          - name: coordinates
+            description: Координаты
+          - name: timezone
+            description: Временная зона
+      - name: seats
+        description: Места самолетах
+        columns:
+          - name: aircraft_code
+            description: Код места
+          - name: seat_no
+            description: Номер места
+          - name: fare_conditions
+            description: Класс места
