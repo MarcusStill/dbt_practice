@@ -1,0 +1,73 @@
+sources:
+  - name: demo_src
+    description: Данные из БД авиаперелетов
+    database: dwh_flight
+    schema: demo_src
+    tables:
+      - name: boarding_passes
+        description: Посадочный талон
+        columns:
+          - name: ticket_no
+            description: ""
+          - name: flight_id
+            description: ""
+          - name: boarding_no
+            description: ""
+          - name: seat_no
+            description: ""
+      - name: flights
+        description: Рейсы
+        columns:
+          - name: flight_id
+            description: ""
+          - name: flight_no
+            description: ""
+          - name: scheduled_departure
+            description: ""
+          - name: scheduled_arrival
+            description: ""
+          - name: departure_airport
+            description: ""
+          - name: arrival_airport
+            description: ""
+          - name: status
+            description: ""
+          - name: aircraft_code
+            description: ""
+          - name: actual_departure
+            description: ""
+          - name: actual_arrival
+            description: ""
+        freshness:
+          warn_after:
+            count: 600000
+            period: hour
+          error_after:
+            count: 10000
+            period: day
+          filter: current_timestamp::date - actual_departure::date < 30000
+        loaded_at_field: actual_departure::timestamp
+      - name: ticket_flights
+        description: Перелеты
+        columns:
+          - name: ticket_no
+            description: ""
+          - name: flight_id
+            description: ""
+          - name: fare_conditions
+            description: ""
+          - name: amount
+            description: ""
+      - name: tickets
+        description: Билеты
+        columns:
+          - name: ticket_no
+            description: ""
+          - name: book_ref
+            description: ""
+          - name: passenger_id
+            description: ""
+          - name: passenger_name
+            description: ""
+          - name: contact_data
+            description: ""
