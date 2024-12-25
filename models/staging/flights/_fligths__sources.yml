@@ -35,3 +35,13 @@ sources:
             description: Номер места
           - name: fare_conditions
             description: Класс места
+      - name: bookings
+        description: Бронирования
+        columns:
+          - name: book_ref
+            description: Ссылка бронирования
+          - name: book_date
+            description: Дата бронирования
+          - name: total_amount
+            description: Общая сумма бронирования
+        
