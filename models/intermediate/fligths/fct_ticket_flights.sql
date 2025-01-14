@@ -9,4 +9,4 @@ select
     fare_conditions,
     amount
 from
-    {{ ref('stg_flight__ticket_flights') }}
+    {{ ref('stg_flights__ticket_flights') }}

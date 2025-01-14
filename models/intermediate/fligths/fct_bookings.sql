@@ -8,4 +8,4 @@ select
     book_date,
     total_amount
 from
-    {{ ref('stg_flight__bookings') }}
+    {{ ref('stg_flights__bookings') }}

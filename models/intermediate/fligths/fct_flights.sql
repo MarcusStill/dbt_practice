@@ -15,4 +15,4 @@ select
     actual_departure,
     actual_arrival
 from
-    {{ ref('stg_flight__flights') }}
+    {{ ref('stg_flights__flights') }}

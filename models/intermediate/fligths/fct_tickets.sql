@@ -10,4 +10,4 @@ select
     passenger_name,
     contact_data
 from
-    {{ ref('stg_flight__tickets') }}
+    {{ ref('stg_flights__tickets') }}
