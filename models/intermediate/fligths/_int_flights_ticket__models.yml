@@ -1,0 +1,32 @@
+models:
+  - name: fct_ticket_flights
+    description: Перелеты
+    docs:
+      show: true
+      node_color: green
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}
+    meta:
+      owner: "test_mail@gmail.com"
+
+    columns:
+    - name: ticket_no
+      data_type: bpchar(13)
+      constraints:
+        - type: not_null
+    - name: flight_id
+      data_type: integer
+      constraints:
+        - type: not_null
+    - name: fare_conditions
+      data_type: varchar(10)
+      constraints:
+        - type: not_null
+    - name: amount
+      data_type: numeric(10, 2)
+      constraints:
+        - type: check
+          expression: "amount > 0"
