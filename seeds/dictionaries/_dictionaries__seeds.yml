@@ -11,3 +11,13 @@ seeds:
         tests:
           - not_null
           - unique
+  - name: employee_tickets
+    description: Id сотрудников авиакомпании 
+    config:
+      column_types:
+        passenger_id: varchar(20)
+    columns:
+      - name: passenger_id
+        tests:
+          - not_null
+          - unique
