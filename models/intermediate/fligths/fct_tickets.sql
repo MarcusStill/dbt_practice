@@ -17,19 +17,4 @@ from
 on
     tickets.passenger_id = employees.passenger_id
 where
-    employees.passenger_id is null 
-/* WHERE tickets.passenger_id NOT IN (SELECT passenger_id FROM {{ ref('employee_tickets') }}); */
-/*select
-    tickets.ticket_no,
-    tickets.book_ref,
-    tickets.passenger_id,
-    tickets.passenger_name,
-    tickets.contact_data
-from
-    {{ ref('stg_flights__tickets') }} as tickets
-where
-    tickets.passenger_id NOT IN (
-        select passenger_id
-        from {{ ref('employee_tickets') }}
-        where passenger_id is not null
-    )*/
+    employees.passenger_id is null
