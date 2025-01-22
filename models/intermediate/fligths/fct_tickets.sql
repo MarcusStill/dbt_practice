@@ -1,13 +1,35 @@
 {{
   config(
-        materialized = 'table',
-    )
+      materialized = 'table'
+  )
 }}
-select
-    ticket_no,
-    book_ref,
-    passenger_id,
-    passenger_name,
-    contact_data
+ select
+    tickets.ticket_no,
+    tickets.book_ref,
+    tickets.passenger_id,
+    tickets.passenger_name,
+    tickets.contact_data
 from
-    {{ ref('stg_flights__tickets') }}
+    {{ ref('stg_flights__tickets') }} as tickets
+ left join
+    {{ ref('employee_tickets') }} as employees
+    --{{ ref('stg_dict__employee_tickets') }} as employees
+on
+    tickets.passenger_id = employees.passenger_id
+where
+    employees.passenger_id is null 
+/* WHERE tickets.passenger_id NOT IN (SELECT passenger_id FROM {{ ref('employee_tickets') }}); */
+/*select
+    tickets.ticket_no,
+    tickets.book_ref,
+    tickets.passenger_id,
+    tickets.passenger_name,
+    tickets.contact_data
+from
+    {{ ref('stg_flights__tickets') }} as tickets
+where
+    tickets.passenger_id NOT IN (
+        select passenger_id
+        from {{ ref('employee_tickets') }}
+        where passenger_id is not null
+    )*/
