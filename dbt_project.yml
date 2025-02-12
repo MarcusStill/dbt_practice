@@ -32,8 +32,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_practice:
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    intermediate:
+      +tags: "intermediate"
+    staging:
+        +tags: "staging"
+    +meta:
+      owner: "dbt_project_yml@gmail.com"
+      year_created: 2025
 seeds:
   dbt_practice:
     schema: seeds

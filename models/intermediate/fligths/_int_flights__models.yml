@@ -16,12 +16,21 @@ models:
 
     columns:
     - name: book_ref
+      description: Идентификатор бронирования
       data_type: bpchar(6)
       constraints:
         - type: not_null
+      tags:
+        - "fact"
+        - "fligths"
+      tests:
+       - not_null
+       - unique
     - name: book_date
+      description: Дата бронирования
       data_type: timestamptz
     - name: total_amount
+      description: Сумма бронирования
       data_type: numeric(10, 2)
       constraints:
         - type: check
