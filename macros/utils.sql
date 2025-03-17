@@ -79,3 +79,20 @@ dbt run-operation drop_old_relations --args '{"dryrun": True}'
 dbt run-operation drop_old_relations
 #}
 {% endmacro %}
+
+{# Макрос, который перечислит через запятую названия всех колонок из модели, название, которой будет передано в аргументе #}
+{% macro show_columns_relation(relation) %}
+    {# Получаем список колонок из переданного relation #}
+    {%- set columns = adapter.get_columns_in_relation(relation) -%}
+
+    {# Формируем строку с перечислением колонок через запятую #}
+    {%- set column_names = columns | map(attribute='column') | join(', ') -%}
+
+    {# Если колонок нет, возвращаем звездочку для выборки всех колонок #}
+    {%- if column_names == '' %}
+        {%- set column_names = '*' %}
+    {%- endif %}
+
+    {{ return(column_names) }}
+{% endmacro %}
+
