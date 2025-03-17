@@ -7,13 +7,14 @@
 
 }}
 select
-        book_ref,
-        book_date,
-        {{ penny_to_rub(column_name='total_amount') }} as total_amount
-from {{ source('demo_src', 'bookings') }}
+    book_ref,
+    book_date,
+    {{ penny_to_rub(column_name='total_amount') }} as total_amount
+from 
+    {{ source('demo_src', 'bookings') }}
 {% if is_incremental() %}
-WHERE
-    ('0x' || book_ref)::bigint > (SELECT MAX(('0x' || book_ref)::bigint) FROM {{ this }})
+where
+    {{ bookref_to_bigint(bookref = 'book_ref') }} >= (SELECT MAX({{ bookref_to_bigint(bookref = 'book_ref') }}) FROM {{ this }})
 
 {% endif %}
-/* Приводим строкое значение из поля book_ref к шестнадцаричному числу. Из-за преобразования получаем замедление. */
+{# Приводим строкое значение из поля book_ref типу bigint. #}
