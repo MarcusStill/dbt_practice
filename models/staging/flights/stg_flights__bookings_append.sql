@@ -9,7 +9,7 @@
 select
         book_ref,
         book_date,
-        total_amount
+        {{ penny_to_rub(column_name='total_amount') }} as total_amount
 from {{ source('demo_src', 'bookings') }}
 {% if is_incremental() %}
 WHERE
