@@ -39,6 +39,8 @@ models:
     +meta:
       owner: "dbt_project_yml@gmail.com"
       year_created: 2025
+    # Run macros check_dependencies
+    +post-hook: "{{ check_dependencies(this) }}"
 seeds:
   dbt_practice:
     schema: seeds
