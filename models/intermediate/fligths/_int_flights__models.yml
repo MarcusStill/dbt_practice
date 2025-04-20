@@ -15,6 +15,9 @@ models:
       status: in_dev
 
     columns:
+    - name: booking_sk
+      description: Суррогатный ключ на основе book_ref
+      data_type: text
     - name: book_ref
       description: Идентификатор бронирования
       data_type: bpchar(6)
@@ -40,3 +43,26 @@ models:
       meta:
         owner: finance_team
       quote: false
+  - name: fct_flights
+    description: Факты полетов
+    columns:
+      - name: flight_id
+        description: Идентификатор полета
+      - name: flight_no
+        description: Номер полета
+      - name: scheduled_departure
+        description: Запланированный вылет
+      - name: scheduled_arrival
+        description: Общая сумма бронирования
+      - name: departure_airport
+        description: Аэропорт отправления
+      - name: arrival_airport
+        description: Аэропорт прибытия
+      - name: "status"
+        description: Статус
+      - name: aircraft_code
+        description: Код воздушного судна
+      - name: actual_departure,
+        description: Фактический вылет
+      - name: actual_arrival
+        description: Фактическое прибытие
