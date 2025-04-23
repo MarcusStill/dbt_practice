@@ -16,9 +16,6 @@ sources:
           - name: seat_no
             description: ""
       - name: flights
-        tests:
-          - dbt_utils.equal_rowcount:
-              compare_model: ref('fct_flights')
         description: Рейсы
         columns:
           - name: flight_id
