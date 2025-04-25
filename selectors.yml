@@ -1,0 +1,10 @@
+selectors:
+  - name: incremental_models
+    description: "Update all incremental models"
+    definition:
+      method: config
+      value: materialized
+      arguments:
+        config: incremental
+
+# dbt run --selector incremental_models
