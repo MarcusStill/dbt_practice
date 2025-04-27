@@ -1,3 +1,27 @@
+{# Витрина dm_seats_occupied
+Измерения (dimensions):
+    Departure_Airport_Code - код аэропорта отправления
+    Departure_Airport_Name - название аэропорта отправления
+    Departure_Airport_City - город аэропорта отправления
+    Departure_Airport_Coordinates - координаты аэропорта отправления
+    Arrival_Airport_Code - код аэропорта прибытия 
+    Arrival_Airport_City- город аэропорта прибытия 
+    Arrival_Airport_Name - название аэропорта прибытия 
+    Arrival_Airport_Coordinates - координаты аэропорта прибытия 
+    Flight_status - статус рейса
+    Aircraft_code - код самолета
+    Aircraft_model - модель самолета
+    Scheduled_departure_date - запланированная дата отправления
+    Flight_no - номер полета
+    Flight_id - идентификатор полета
+
+Меры (measures):
+    Ticket_flights_purchased - количество купленных билетов (count(fct_ticket_flights.ticket_no))
+    Boarding_passes_issued - количество выданных посадочных талонов (count(fct_boarding_passes.ticket_no))
+    Ticket_flights_amount - сумма стоимости проданных билетов (sum(fct_ticket_flights.amount) ) 
+    Ticket_flights_no_sold - количество не проданных билетов (то есть оставшихся пустых мест в самолете) на рейс (считаем, сколько всего место в самолете и вычитаем количество проданных мест в самолете в рамках рейса) 
+#}
+
 {{ 
   config(
       materialized = 'table'
@@ -87,27 +111,3 @@ group by
     f.departure_airport, da.airport_name, da.city, da.coordinates::text,
     f.arrival_airport, aa.airport_name, aa.city, aa.coordinates::text,
     f."status", f.aircraft_code, f.scheduled_departure, f.flight_no, f.flight_id
-
-{# Витрина dm_seats_occupied
-Измерения (dimensions):
-Departure_Airport_Code - код аэропорта отправления
-Departure_Airport_Name - название аэропорта отправления
-Departure_Airport_City - город аэропорта отправления
-Departure_Airport_Coordinates - координаты аэропорта отправления
-Arrival_Airport_Code - код аэропорта прибытия 
-Arrival_Airport_City- город аэропорта прибытия 
-Arrival_Airport_Name - название аэропорта прибытия 
-Arrival_Airport_Coordinates - координаты аэропорта прибытия 
-Flight_status - статус рейса
-Aircraft_code - код самолета
-Aircraft_model - модель самолета
-Scheduled_departure_date - запланированная дата отправления
-Flight_no - номер полета
-Flight_id - идентификатор полета
-
-Меры (measures):
-Ticket_flights_purchased - количество купленных билетов (count(fct_ticket_flights.ticket_no))
-Boarding_passes_issued - количество выданных посадочных талонов (count(fct_boarding_passes.ticket_no))
-Ticket_flights_amount - сумма стоимости проданных билетов (sum(fct_ticket_flights.amount) ) 
-Ticket_flights_no_sold - количество не проданных билетов (то есть оставшихся пустых мест в самолете) на рейс (считаем, сколько всего место в самолете и вычитаем количество проданных мест в самолете в рамках рейса) 
-#}
