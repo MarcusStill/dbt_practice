@@ -5,4 +5,3 @@ FROM
     {{ ref('stg_flights__bookings') }}
 WHERE
     length(book_ref) > 7
-    
