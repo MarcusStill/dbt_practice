@@ -3,3 +3,6 @@ target/
 dbt_packages/
 logs/Preferences: Open Settings (JSON)
 .venv/
+logs/dbt.log
+.vscode/settings.json
+logs/dbt.log
