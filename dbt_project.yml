@@ -41,6 +41,10 @@ models:
       year_created: 2025
     # Run macros check_dependencies
     +post-hook: "{{ check_dependencies(this) }}"
+    final:
+      +tags: ['final']
+    tests:
+      +tags: ['tests']
 seeds:
   dbt_practice:
     schema: seeds
