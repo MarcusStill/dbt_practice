@@ -43,8 +43,6 @@ models:
     +post-hook: "{{ check_dependencies(this) }}"
     final:
       +tags: ['final']
-    tests:
-      +tags: ['tests']
 seeds:
   dbt_practice:
     schema: seeds
